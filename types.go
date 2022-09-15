@@ -2,7 +2,7 @@ package gooremote
 
 // external types
 
-// Use this struct to decode data pushed to webhook
+// Use this struct to decode data sent to webhook
 type WebhookPayload struct {
 	ID     string `json:"id"`
 	Amount int    `json:"amount"`
