@@ -3,6 +3,7 @@ package gooremote
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -33,7 +34,7 @@ func (i *instance) NewPayment(amount int, next, webhook, description string) (st
 	}
 
 	if !pr.Ok {
-		return "", err
+		return "", errors.New("payment could not be created")
 	}
 
 	return pr.Result.ID, nil
