@@ -23,6 +23,15 @@ type newPaymentResponse struct {
 	}
 }
 
+type verifyResponse struct {
+	Ok               bool   `json:"ok"`
+	ErrorCode        int    `json:"error_code"`
+	ErrorDescription string `json:"error_description"`
+	Result           struct {
+		Paid bool `json:"paid"`
+	}
+}
+
 type payment struct {
 	Amount      int    `bson:"amount" json:"amount"`
 	Next        string `bson:"next" json:"next"`

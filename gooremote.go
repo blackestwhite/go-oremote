@@ -3,6 +3,7 @@ package gooremote
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/http"
 )
@@ -40,6 +41,24 @@ func (i *instance) NewPayment(amount int, next, webhook, description string) (st
 
 func GetGatewayURL(id string) string {
 	return "https://api.oremote.org/pay/v1/pay/" + id
+}
+
+func (i *instance) Verify(id string) (paid bool, err error) {
+	var vr verifyResponse
+
+	url := fmt.Sprintf("https://api.oremote.or/pay/v1/verify/%s", id)
+
+	body, err := i.post(url, nil)
+	if err != nil {
+		return false, err
+	}
+
+	err = json.NewDecoder(body).Decode(&vr)
+	if err != nil {
+		return false, err
+	}
+
+	return vr.Result.Paid, nil
 }
 
 func (i *instance) post(url string, data interface{}) (io.ReadCloser, error) {
