@@ -58,6 +58,10 @@ func (i *instance) Verify(id string) (paid bool, err error) {
 		return false, err
 	}
 
+	if !vr.Ok {
+		return false, fmt.Errorf("code: %d, desc: %s", vr.ErrorCode, vr.ErrorDescription)
+	}
+
 	return vr.Result.Paid, nil
 }
 
