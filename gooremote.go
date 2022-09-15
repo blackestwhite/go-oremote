@@ -47,7 +47,7 @@ func GetGatewayURL(id string) string {
 func (i *instance) Verify(id string) (paid bool, err error) {
 	var vr verifyResponse
 
-	url := fmt.Sprintf("https://api.oremote.or/pay/v1/verify/%s", id)
+	url := fmt.Sprintf("https://api.oremote.org/pay/v1/verify/%s", id)
 
 	body, err := i.post(url, nil)
 	if err != nil {
