@@ -48,8 +48,9 @@ response if there is an error:
     "error_code": xxx,
     "error_description": "error description"
 }
+```
 
-### payment url
+### payment 
 `GET` this url, it'll redirect you to payment page
 ```
 https://api.oremote.org/pay/v1/pay/id
