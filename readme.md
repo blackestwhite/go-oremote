@@ -34,9 +34,22 @@ log.Printf("payment %s, is paid.\n", paymentID)
 note that API SECRET KEY should be passed in header as `x-oremote-api-access-token` in `POST` requests.
 ### create payment
 use `POST` method
+url:
 ```
 https://api.oremote.org/pay/v1/new
 ```
+POST body:
+```json
+{
+    "amount": 10000,
+    "next": "https://next.com",
+    "webhook": "https://webhook.com",
+    "description": "payment description"
+}
+```
+`next` is the address that user redirects to after payment action (no matter successful or failed payment)
+`webhook` is the url that is triggered via `POST` request when payment is paid
+
 response if there is no error:
 ```json
 {
