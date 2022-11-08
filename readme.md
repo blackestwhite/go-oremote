@@ -5,7 +5,13 @@ toolkit for using oremote.org APIs
 ```go
 instance := gooremote.New("SECRET KEY")
 
-paymentID, err := instance.NewPayment(10000, "https://next.com", "https://webhook.com", "payment description")
+paymentID, err := instance.NewPayment(
+    10000,
+    "https://next.com",
+    "https://webhook.com",
+    "payment description",
+)
+
 if err != nil {
     log.Println(err.Error())
 }
