@@ -20,7 +20,7 @@ type newPaymentResponse struct {
 	ErrorDescription string `json:"error_description"`
 	Result           struct {
 		ID string `json:"id"`
-	}
+	} `json:"result"`
 }
 
 type verifyResponse struct {
@@ -29,7 +29,7 @@ type verifyResponse struct {
 	ErrorDescription string `json:"error_description"`
 	Result           struct {
 		Paid bool `json:"paid"`
-	}
+	} `json:"result"`
 }
 
 type payment struct {
@@ -45,5 +45,5 @@ type getRawGatewayURLResponse struct {
 	ErrorDescription string `json:"error_description"`
 	Result           struct {
 		URL string `json:"url"`
-	}
+	} `json:"result"`
 }

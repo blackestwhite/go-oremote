@@ -27,6 +27,7 @@ func (i *instance) NewPayment(amount int, next, webhook, description string) (st
 	if err != nil {
 		return "", nil
 	}
+	defer body.Close()
 
 	err = json.NewDecoder(body).Decode(&pr)
 	if err != nil {
@@ -52,6 +53,7 @@ func (i *instance) GetRawGatewayURL(id string) (string, error) {
 	if err != nil {
 		return "", err
 	}
+	defer body.Close()
 
 	err = json.NewDecoder(body).Decode(&res)
 	if err != nil {
@@ -74,6 +76,7 @@ func (i *instance) Verify(id string) (paid bool, err error) {
 	if err != nil {
 		return false, err
 	}
+	defer body.Close()
 
 	err = json.NewDecoder(body).Decode(&vr)
 	if err != nil {
