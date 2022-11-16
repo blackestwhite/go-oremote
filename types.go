@@ -38,3 +38,12 @@ type payment struct {
 	Webhook     string `bson:"webhook" json:"webhook"`
 	Description string `bson:"description" json:"description"`
 }
+
+type getRawGatewayURLResponse struct {
+	Ok               bool   `json:"ok"`
+	ErrorCode        int    `json:"error_code"`
+	ErrorDescription string `json:"error_description"`
+	Result           struct {
+		URL string `json:"url"`
+	}
+}

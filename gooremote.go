@@ -44,6 +44,27 @@ func GetGatewayURL(id string) string {
 	return "https://api.oremote.org/pay/v1/pay/" + id
 }
 
+func (i *instance) GetRawGatewayURL(id string) (string, error) {
+	var res getRawGatewayURLResponse
+	url := fmt.Sprintf("https://api.oremote.org/pay/v1/zget/%s", id)
+
+	body, err := i.post(url, nil)
+	if err != nil {
+		return "", err
+	}
+
+	err = json.NewDecoder(body).Decode(&res)
+	if err != nil {
+		return "", err
+	}
+
+	if !res.Ok {
+		return "", fmt.Errorf("err code: %d, err desc: %s", res.ErrorCode, res.ErrorDescription)
+	}
+
+	return res.Result.URL, nil
+}
+
 func (i *instance) Verify(id string) (paid bool, err error) {
 	var vr verifyResponse
 
